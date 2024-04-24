@@ -133,7 +133,7 @@ public class BasketService {
                 new ApiResponse<>(
                         null, 20, true, "El total de su canasta es: " + total
                 ),
-                HttpStatus.BAD_REQUEST
+                HttpStatus.OK
         );
     }
 

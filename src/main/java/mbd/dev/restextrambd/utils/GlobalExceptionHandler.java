@@ -14,6 +14,16 @@ import java.util.logging.Logger;
 public class GlobalExceptionHandler {
     Logger logger = Logger.getLogger(GlobalExceptionHandler.class.getName());
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse<String>> handleException(Exception ex) {
+        logger.warning(ex.getMessage());
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        null, 500, true, "Internal server error"),
+                HttpStatus.INTERNAL_SERVER_ERROR
+        );
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         logger.warning(ex.getMessage());
